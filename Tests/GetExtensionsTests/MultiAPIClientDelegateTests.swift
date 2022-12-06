@@ -1,7 +1,8 @@
 import Foundation
 import Get
-@testable import GetExtensions
 import XCTest
+
+@testable import GetExtensions
 
 final class MultiAPIClientDelegateTests: XCTestCase {
   let client = APIClient(baseURL: nil)
