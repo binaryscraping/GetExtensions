@@ -48,4 +48,22 @@ public struct MultiAPIClientDelegate: APIClientDelegate {
     }
     return nil
   }
+
+  public func client<T>(_ client: APIClient, encoderForRequest request: Request<T>) -> JSONEncoder? {
+    for delegate in delegates {
+      if let encoder = delegate.client(client, encoderForRequest: request) {
+        return encoder
+      }
+    }
+    return nil
+  }
+
+  public func client<T>(_ client: APIClient, decoderForRequest request: Request<T>) -> JSONDecoder? {
+    for delegate in delegates {
+      if let decoder = delegate.client(client, decoderForRequest: request) {
+        return decoder
+      }
+    }
+    return nil
+  }
 }
